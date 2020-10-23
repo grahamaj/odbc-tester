@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  scl-node:
+    build: .
+    container_name: scl-node
+    depends_on:
+      - scl-db
+    networks:
+      - scl
+  scl-db:
+    image: centos/mysql-80-centos7
+    container_name: scl-db
+    expose:
+      - 3306
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: mydb
+    networks:
+      - scl
+networks:
+  scl:
